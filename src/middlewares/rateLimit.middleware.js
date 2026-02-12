@@ -1,9 +1,9 @@
 const rateLimit = require('express-rate-limit');
 
-// Limiter para refresh
+
 const refreshLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 20, // máximo 20 requests por IP
+  windowMs: 15 * 60 * 1000, 
+  max: 20, 
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -12,8 +12,8 @@ const refreshLimiter = rateLimit({
 });
 
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 7, // máximo 5 intentos
+  windowMs: 15 * 60 * 1000, 
+  max: 7, 
   standardHeaders: true,
   legacyHeaders: false,
   message: {

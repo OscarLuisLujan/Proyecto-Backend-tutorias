@@ -16,18 +16,18 @@ const logout = async (req, res, next) => {
       });
     }
 
-    // 1. Revocar el refresh token
+    
     const revoked = await refreshTokenModel.revokeToken(refreshToken);
 
     if (!revoked) {
-      // Si no se encontró, podría ya estar revocado o expirado
+      
       console.log('Token no encontrado o ya revocado');
     }
 
-    // 2. Opcional: Limpiar tokens expirados periódicamente
+    
     await refreshTokenModel.cleanupExpiredTokens();
 
-    // 3. Respuesta que indica al cliente que debe borrar sus tokens
+    
     res
       .clearCookie('accessToken')
       .clearCookie('refreshToken')
@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
       });
     }
 
-    // 1️⃣ Buscar usuario
+    
     const user = await userModel.findUserByEmail(email);
 
     if (!user || !user.activo) {
@@ -60,7 +60,7 @@ const login = async (req, res, next) => {
       });
     }
 
-    // 2️⃣ Verificar password
+    
     const validPassword = await bcrypt.compare(
       password,
       user.password_hash
@@ -72,7 +72,7 @@ const login = async (req, res, next) => {
       });
     }
 
-    // 3️⃣ Obtener roles
+    
     const rolesResult = await pool.query(
       `SELECT r.nombre
        FROM rol r
@@ -83,7 +83,7 @@ const login = async (req, res, next) => {
 
     const roles = rolesResult.rows.map(r => r.nombre);
 
-    // 4️⃣ Generar tokens
+    
     const accessToken = jwt.sign(
       {
         id: user.id_usuario,
@@ -100,7 +100,7 @@ const login = async (req, res, next) => {
       { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN }
     );
 
-    // 5️⃣ Guardar refresh token hasheado
+    
     const refreshHash = await bcrypt.hash(refreshToken, 10);
 
     const refreshExpiresMs = ms(process.env.JWT_REFRESH_EXPIRES_IN);
@@ -117,13 +117,13 @@ const login = async (req, res, next) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 15 * 60 * 1000, // 15 min
+      maxAge: 15 * 60 * 1000, 
     })
     .cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+      maxAge: 7 * 24 * 60 * 60 * 1000, 
     })
     .json({
       message: 'Login exitoso',
@@ -155,13 +155,13 @@ const refreshToken = async (req, res) => {
   }
 
   try {
-    // 1️⃣ Verificar firma JWT
+    
     const decoded = jwt.verify(
       refreshToken,
       process.env.JWT_REFRESH_SECRET
     );
 
-    // 2️⃣ Buscar refresh tokens válidos del usuario
+    
     const tokensResult = await pool.query(
       `SELECT * FROM refresh_token
        WHERE id_usuario = $1
@@ -189,7 +189,7 @@ const refreshToken = async (req, res) => {
       });
     }
 
-    // 3️⃣ Generar nuevo access token
+    
     const newAccessToken = jwt.sign(
       { id: decoded.id },
       process.env.JWT_SECRET,

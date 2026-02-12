@@ -12,11 +12,11 @@ const pool = new Pool({
 const connectDB = async () => {
   try {
     await pool.query('SELECT 1');
-    console.log('✅ Conexión a PostgreSQL establecida');
+    console.log('Conexión a PostgreSQL establecida');
   } catch (error) {
-    console.error('❌ Error conectando a PostgreSQL');
+    console.error('Error conectando a PostgreSQL');
     console.error(error.message);
-    process.exit(1); // mata la app (esto es CORRECTO)
+    process.exit(1);
   }
 };
 

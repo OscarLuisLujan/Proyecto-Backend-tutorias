@@ -2,7 +2,7 @@ const { pool } = require('../config/db');
 const bcrypt = require('bcrypt');
 
 const revokeToken = async (token) => {
-  // Buscar tokens activos y comparar con bcrypt
+  
   const tokensResult = await pool.query(
     `SELECT * FROM refresh_token 
      WHERE revoked = false 
@@ -23,10 +23,10 @@ const revokeToken = async (token) => {
     }
   }
   
-  return false; // Token no encontrado
+  return false; 
 };
 
-// Opcional: Función para limpiar tokens expirados
+
 const cleanupExpiredTokens = async () => {
   await pool.query(
     `DELETE FROM refresh_token 
