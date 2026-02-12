@@ -25,13 +25,21 @@ Implementa autenticación segura con JWT, refresh tokens persistidos en base de 
 
 ## Estructura del Proyecto
 
-src/
-├── controllers/
-├── models/
-├── routes/
-├── middlewares/
-├── config/
-└── app.js
+```
+backend-tutorias/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── app.js
+│   └── server.js
+├── .env
+├── package.json
+└── README.md
+```
 
 ## Flujo de Autenticación
 
