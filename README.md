@@ -96,5 +96,7 @@ GET /api/users (protegido por roles)
 
 ## 👨‍💻 Autor
 
-Desarrollado por Oscar Luis Luján Nacho
-Enfoque en backend seguro y arquitectura escalable.
+**Desarrollado por:** Oscar Luis Luján Nacho  
+**Especialización:** Backend seguro, arquitectura escalable y buenas prácticas en seguridad.
+
+**Contacto:** [GitHub](https://github.com/OscarLuisLujan) | [LinkedIn](https://www.linkedin.com/in/oscar-luis-luj%C3%A1n-nacho-097184344/)
