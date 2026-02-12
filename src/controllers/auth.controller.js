@@ -16,17 +16,12 @@ const logout = async (req, res, next) => {
       });
     }
 
-    
     const revoked = await refreshTokenModel.revokeToken(refreshToken);
-
     if (!revoked) {
-      
       console.log('Token no encontrado o ya revocado');
     }
-
     
     await refreshTokenModel.cleanupExpiredTokens();
-
     
     res
       .clearCookie('accessToken')
@@ -217,6 +212,6 @@ const refreshToken = async (req, res) => {
 
 module.exports = {
   login,
-    refreshToken,
-    logout,
+  refreshToken,
+  logout,
 };

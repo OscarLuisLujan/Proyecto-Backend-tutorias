@@ -5,15 +5,12 @@ Implementa autenticación segura con JWT, refresh tokens persistidos en base de 
 
 ## Características
 
-- 🔐 Autenticación con JWT
-- 🔄 Refresh Tokens almacenados y hasheados en base de datos
-- 🚪 Logout con revocación real de sesión
-- 👥 Sistema de Roles y Permisos
-- 🛡 Rate limiting en endpoints sensibles (/login, /refresh)
-- 🍪 Cookies httpOnly para mayor seguridad
-- 🧾 Validaciones con Zod
-- 🗄 PostgreSQL como base de datos
-- ⚙ Arquitectura modular (Controllers, Models, Middlewares)
+- **Autenticación JWT**: Access tokens de corta duración y refresh tokens de larga duración.
+- **Seguridad**: Hashing de contraseñas, refresh tokens hasheados, protección contra fuerza bruta, cookies seguras.
+- **Validación**: Esquemas de validación con Zod para asegurar integridad de datos.
+- **Control de Acceso**: Middleware de autorización basado en roles.
+- **Estructura Modular**: Separación clara entre controladores, rutas, modelos y middlewares.
+- **Cookies HttpOnly**: Almacenamiento seguro de tokens en cookies con protección contra XSS.
 
 ## Tecnologías
 
